@@ -4,10 +4,27 @@
     <Description>Common helper methods for tasks as used in asynchronous programming.</Description>
     <TargetFrameworks>netstandard1.3;netstandard2.0;net461</TargetFrameworks>
     <PackageTags>$(PackageTags);taskfactory;cancellationtoken;taskcompletionsource</PackageTags>
+	<SignAssembly>true</SignAssembly>
+	<DelaySign>false</DelaySign>
+	<AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Nito.Disposables" Version="2.2.1" />
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+	  <Reference Include="Nito.Disposables">
+		  <HintPath>..\..\lib\net461\Nito.Disposables.dll</HintPath>
+	  </Reference>
   </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
+	  <Reference Include="Nito.Disposables">
+		  <HintPath>..\..\lib\netstandard1.0\Nito.Disposables.dll</HintPath>
+	  </Reference>
+  </ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+		<Reference Include="Nito.Disposables">
+			<HintPath>..\..\lib\netstandard2.0\Nito.Disposables.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 
 </Project>

@@ -4,10 +4,31 @@
     <Description>A single-threaded async-compatible context.</Description>
     <TargetFrameworks>netstandard1.3;netstandard2.0;net461</TargetFrameworks>
     <PackageTags>$(PackageTags);synchronizationcontext</PackageTags>
+    <SignAssembly>true</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Nito.AsyncEx.Tasks\Nito.AsyncEx.Tasks.csproj" />
   </ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+		<Reference Include="Nito.Disposables">
+			<HintPath>..\..\lib\net461\Nito.Disposables.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
+		<Reference Include="Nito.Disposables">
+			<HintPath>..\..\lib\netstandard1.0\Nito.Disposables.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+		<Reference Include="Nito.Disposables">
+			<HintPath>..\..\lib\netstandard2.0\Nito.Disposables.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 
 </Project>
